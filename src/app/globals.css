@@ -1,0 +1,54 @@
+/* src/app/globals.css */
+@import "tailwindcss";
+@import "@heroui/styles"; /* HeroUI styles for v4 */
+
+/* Define our custom theme directly in CSS (Tailwind v4 syntax) */
+@theme {
+  --color-background: #F4F8F6;
+  --color-surface: #FFFFFF;
+  
+  --color-primary: #164E4A;
+  --color-primary-light: #1F6B66;
+  --color-primary-dark: #0E312E;
+  
+  --color-secondary: #5F8F89;
+  --color-secondary-light: #7CA7A2;
+  --color-secondary-dark: #456D67;
+  
+  --color-accent: #D59B55;
+  --color-accent-light: #E1B378;
+  --color-accent-dark: #B87F3B;
+  
+  --color-mainText: #142321;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-mainText antialiased;
+  }
+
+  ::selection {
+    @apply bg-primary text-surface;
+  }
+}
+
+/* Custom utility for the bracketed headers [ SECTION NAME ] */
+@layer utilities {
+  .bracket-header {
+    @apply text-primary font-bold tracking-widest uppercase flex items-center gap-4;
+  }
+  
+  .bracket-header::before {
+    content: '[';
+    @apply text-accent text-3xl font-light;
+  }
+  
+  .bracket-header::after {
+    content: ']';
+    @apply text-accent text-3xl font-light;
+  }
+}
