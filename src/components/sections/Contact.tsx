@@ -1,15 +1,36 @@
 // src/components/sections/Contact.tsx
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { SectionHeader } from "../ui/SectionHeader";
-import { Button } from "@heroui/react";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
 
 export const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Form submission logic triggered!");
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Message submission error:", error);
+      setStatus("error");
+    }
   };
 
   return (
@@ -43,6 +64,19 @@ export const Contact = () => {
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-6 bg-background p-8 border border-primary/10">
+            {status === "success" && (
+              <div className="p-4 bg-accent/10 border border-accent text-accent font-medium flex items-center gap-2 mb-4">
+                <CheckCircle2 size={18} />
+                <span>Message sent successfully! I will reply soon.</span>
+              </div>
+            )}
+            
+            {status === "error" && (
+              <div className="p-4 bg-red-500/10 border border-red-500 text-red-500 font-medium mb-4">
+                Failed to send message. Please try again later.
+              </div>
+            )}
+
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="text-sm font-semibold text-primary">
                 Name
@@ -50,6 +84,8 @@ export const Contact = () => {
               <input 
                 id="name"
                 type="text" 
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your full name"
                 required 
                 className="w-full px-4 py-3 bg-surface border border-primary/20 text-mainText placeholder:text-mainText/40 focus:outline-none focus:border-accent transition-colors"
@@ -63,8 +99,24 @@ export const Contact = () => {
               <input 
                 id="email"
                 type="email" 
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="your.email@example.com"
                 required 
+                className="w-full px-4 py-3 bg-surface border border-primary/20 text-mainText placeholder:text-mainText/40 focus:outline-none focus:border-accent transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="phone" className="text-sm font-semibold text-primary">
+                Phone (Optional)
+              </label>
+              <input 
+                id="phone"
+                type="tel" 
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                placeholder="+880 1XXXXXXXXX"
                 className="w-full px-4 py-3 bg-surface border border-primary/20 text-mainText placeholder:text-mainText/40 focus:outline-none focus:border-accent transition-colors"
               />
             </div>
@@ -75,6 +127,8 @@ export const Contact = () => {
               </label>
               <textarea 
                 id="message"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="How can I help you?"
                 rows={4}
                 required 
@@ -82,12 +136,13 @@ export const Contact = () => {
               />
             </div>
 
-            <Button 
-              type="submit" 
-              className="w-full bg-primary text-surface font-bold rounded-none py-6 uppercase tracking-wider hover:bg-primary-dark transition-all mt-4"
+            <button 
+              type="submit"
+              disabled={status === "loading"}
+              className="w-full bg-primary text-surface font-bold rounded-none py-6 uppercase tracking-wider hover:bg-primary-dark transition-all mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Send Message
-            </Button>
+              {status === "loading" ? "Sending..." : "Send Message"}
+            </button>
           </form>
         </div>
       </div>

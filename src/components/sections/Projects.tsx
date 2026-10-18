@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionHeader } from "../ui/SectionHeader";
-import { Card, Button } from "@heroui/react";
+import { Card } from "@heroui/react";
 import { ArrowUpRight } from "lucide-react";
 
 interface ProjectType {
@@ -14,6 +14,10 @@ interface ProjectType {
   description: string;
   image: string;
   techStack: string[];
+  liveLink?: string;
+  githubLink?: string;
+  challenges?: string;
+  futureImprovements?: string;
 }
 
 const defaultProjects: ProjectType[] = [
@@ -51,7 +55,7 @@ export const Projects = () => {
         if (json.success && json.data.length > 0) {
           setProjects(json.data);
         }
-      } catch (err) {
+      } catch (err: unknown) {
         console.error("Using default projects due to fetch error:", err);
       }
     };
@@ -70,7 +74,7 @@ export const Projects = () => {
               className="bg-surface rounded-none border border-primary/10 shadow-none group hover:border-accent transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <div className="overflow-hidden relative aspect-video w-full">
+                <div className="overflow-hidden relative aspect-video w-full bg-secondary/10">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -99,14 +103,13 @@ export const Projects = () => {
                 </div>
               </div>
               <div className="p-6 pt-0">
-                <Button
-                  as={Link}
+                <Link
                   href={`/projects/${project._id}`}
-                  className="w-full bg-primary text-surface font-bold rounded-none hover:bg-primary-dark transition-all flex items-center justify-between"
+                  className="w-full bg-primary text-surface font-bold rounded-none hover:bg-primary-dark transition-all flex items-center justify-between px-4 py-3"
                 >
                   <span>View Details</span>
                   <ArrowUpRight size={18} />
-                </Button>
+                </Link>
               </div>
             </Card>
           ))}

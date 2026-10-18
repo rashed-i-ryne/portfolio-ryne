@@ -2,27 +2,37 @@
 "use client";
 
 import React, { useState } from "react";
-import { Link, Button } from "@heroui/react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Education", href: "#education" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Education", href: "/#education" },
+    { name: "Experience", href: "/#experience" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
     <nav className="bg-surface/90 backdrop-blur-md border-b border-secondary-light/20 fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="#" className="font-display font-bold text-2xl tracking-tighter text-mainText">
-          RYNE<span className="text-accent">.</span>
-        </Link>
+        {/* Logo with Hidden Admin Trigger */}
+        <div className="font-display font-bold text-2xl tracking-tighter text-mainText flex items-center">
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            RYNE
+          </Link>
+          <Link 
+            href="/admin" 
+            className="text-accent hover:opacity-70 transition-opacity cursor-pointer"
+            aria-label="Admin Access"
+          >
+            .
+          </Link>
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden sm:flex items-center gap-6">
@@ -35,13 +45,6 @@ export const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <Button
-            as={Link}
-            href="/admin"
-            className="bg-primary text-surface font-medium hover:bg-primary-dark transition-all rounded-none"
-          >
-            Admin
-          </Button>
         </div>
 
         {/* Mobile Navigation Toggle */}
@@ -69,14 +72,6 @@ export const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <Button
-            as={Link}
-            href="/admin"
-            onClick={() => setIsMenuOpen(false)}
-            className="w-full bg-primary text-surface font-medium hover:bg-primary-dark transition-all rounded-none mt-2"
-          >
-            Admin Dashboard
-          </Button>
         </div>
       )}
     </nav>

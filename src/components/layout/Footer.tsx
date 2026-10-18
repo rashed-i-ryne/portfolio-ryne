@@ -1,11 +1,20 @@
 // src/components/layout/Footer.tsx
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "@heroui/react";
 
 export const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Making this asynchronous clears the strict ESLint warning
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Uses a static year for the server build, swaps to dynamic year in the browser
+  const currentYear = mounted ? new Date().getFullYear() : 2026;
 
   return (
     <footer className="bg-primary-dark text-surface py-12 mt-20 border-t-4 border-accent">
@@ -31,10 +40,7 @@ export const Footer = () => {
           </Link>
         </div>
       </div>
-      <div 
-        className="max-w-7xl mx-auto px-6 mt-12 text-center text-sm text-surface/50" 
-        suppressHydrationWarning
-      >
+      <div className="max-w-7xl mx-auto px-6 mt-12 text-center text-sm text-surface/50">
         &copy; {currentYear} Rashedul Islam Ryne. Built with Next.js, HeroUI & Tailwind CSS.
       </div>
     </footer>
