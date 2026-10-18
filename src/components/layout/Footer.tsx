@@ -24,24 +24,44 @@ export const Footer = () => {
             RASHEDUL ISLAM RYNE<span className="text-accent">.</span>
           </p>
           <p className="text-surface/70 text-sm">
-            Frontend Developer & EEE Student at UIU.
+            Full Stack Developer & EEE Student at UIU.
           </p>
         </div>
-        
+
         <div className="flex gap-4">
-          <Link href="https://github.com/rashed-i-ryne" target="_blank" className="text-surface hover:text-accent transition-colors">
+          <Link
+            href="https://github.com/rashed-i-ryne"
+            target="_blank"
+            className="text-surface hover:text-accent transition-colors"
+          >
             GitHub
           </Link>
-          <Link href="https://www.linkedin.com/in/rashedul-ryne" target="_blank" className="text-surface hover:text-accent transition-colors">
+          <Link
+            href="https://www.linkedin.com/in/rashedul-ryne"
+            target="_blank"
+            className="text-surface hover:text-accent transition-colors"
+          >
             LinkedIn
           </Link>
-          <Link href="https://x.com/rashedulryne" target="_blank" className="text-surface hover:text-accent transition-colors">
-            Twitter
+          <Link
+            href="https://www.instagram.com/_rynnne._"
+            target="_blank"
+            className="text-surface hover:text-accent transition-colors"
+          >
+            Instagram
+          </Link>
+          <Link
+            href="https://www.facebook.com/rashedulryne24"
+            target="_blank"
+            className="text-surface hover:text-accent transition-colors"
+          >
+            Facebook
           </Link>
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-6 mt-12 text-center text-sm text-surface/50">
-        &copy; {currentYear} Rashedul Islam Ryne. Built with Next.js, HeroUI & Tailwind CSS.
+        &copy; {currentYear} Rashedul Islam Ryne. Built with Next.js, HeroUI &
+        Tailwind CSS.
       </div>
     </footer>
   );

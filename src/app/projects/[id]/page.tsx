@@ -1,7 +1,7 @@
 // src/app/projects/[id]/page.tsx
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
@@ -33,49 +33,35 @@ interface ProjectDetails {
 const mockProjectsRecord: Record<string, ProjectDetails> = {
   "1": {
     _id: "1",
-    title: "Sun Cycle CSS Animation Engine",
+    title: "FitLog — Fitness Tracking Platform",
     description:
-      "A pure CSS keyframe animation tracking sunrise and sunset elevation paths with synchronized lighting state background shifts.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
-    techStack: ["HTML", "CSS", "JavaScript", "React"],
-    liveLink: "https://example.com/sun-cycle",
-    githubLink: "https://github.com/rashed-i-ryne/sun-cycle-css",
+      "A responsive fitness tracking web application that allows users to explore workouts, organize fitness plans, and manage saved activities with secure authentication and database integration.",
+    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&q=80",
+    techStack: ["Next.js", "TypeScript", "MongoDB", "Better Auth", "Hero UI"],
+    liveLink: "https://fitlog-06-ph.vercel.app/",
+    githubLink: "https://github.com/rashed-i-ryne/assignment-06",
     challenges:
-      "Balancing keyframe color transitions smoothly without sudden steps, ensuring the sky remains light blue when the sun hits peak altitude without needing an artificial ground plane element.",
+      "Implementing robust role-based secure authentication using Better Auth across both server and client components while managing client-side state for complex workout lists.",
     futureImprovements:
-      "Add interactive solar time control sliders and real-time astronomical API integration based on user geographic latitude.",
+      "Integrate Stripe payments for premium personalized fitness plan subscriptions and add advanced graphical analytics for monthly progress tracking.",
   },
   "2": {
     _id: "2",
-    title: "EEE Circuit Analyzer Pro",
+    title: "BazarDor — Daily Market Price Tracker",
     description:
-      "Interactive nodal analysis web application helping EEE students compute state equations and plot waveforms in real time.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
-    liveLink: "https://example.com/circuit-pro",
-    githubLink: "https://github.com/rashed-i-ryne/circuit-analyzer",
+      "A modern market-price tracking platform designed to help users quickly view, compare, and filter prices of everyday grocery and market products with category sorting and secure role-based routes.",
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80",
+    techStack: ["Next.js", "TypeScript", "MongoDB", "Better Auth", "Hero UI"],
+    liveLink: "https://bazardar-assignment-07-ph.vercel.app/",
+    githubLink: "https://github.com/rashed-i-ryne/assignment-07",
     challenges:
-      "Formulating complex matrix calculation pipelines on client side while keeping rendering high performance.",
+      "Structuring dynamic MongoDB schemas to efficiently handle fluctuating market prices, category-based filtering, and sorting without hurting query response times.",
     futureImprovements:
-      "Export waveforms to SPICE-compatible files and integrate 3D visual component layouts using Three.js.",
-  },
-  "3": {
-    _id: "3",
-    title: "BetterAuth Management Suite",
-    description:
-      "Secure administrative control portal for content management with role-based access control and session verification.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80",
-    techStack: ["Next.js", "HeroUI", "BetterAuth", "Mongoose"],
-    liveLink: "https://example.com/better-auth-admin",
-    githubLink: "https://github.com/rashed-i-ryne/better-auth-suite",
-    challenges:
-      "Managing seamless session propagation across Next.js App Router Server Components and Client Components.",
-    futureImprovements:
-      "Integrate multi-factor authentication (MFA) support and audit activity log streaming.",
+      "Add historical price trend charts for products over time and implement community-driven price reporting with administrator validation workflows.",
   },
 };
 
-const ProjectDetailsPage = () => {
+const ProjectContent = () => {
   const params = useParams();
   const router = useRouter();
   const projectId = params?.id as string;
@@ -109,7 +95,7 @@ const ProjectDetailsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-[70vh] flex items-center justify-center">
         <Spinner size="lg" color="current" className="text-primary" />
       </div>
     );
@@ -117,7 +103,7 @@ const ProjectDetailsPage = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-background flex flex-col items-center justify-center text-center p-6">
+      <div className="min-h-[70vh] flex flex-col items-center justify-center text-center p-6">
         <h1 className="text-4xl font-display font-bold text-primary mb-4">Project Not Found</h1>
         <Button
           onClick={() => router.push("/#projects")}
@@ -130,109 +116,121 @@ const ProjectDetailsPage = () => {
   }
 
   return (
-    <main className="min-h-screen bg-background">
-      <Navbar />
-      <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
-        <Button
-          onClick={() => router.push("/#projects")}
-          className="bg-surface text-primary border border-primary/20 font-medium rounded-none mb-8 hover:bg-primary hover:text-surface transition-all flex items-center gap-2"
-        >
-          <ArrowLeft size={18} />
-          <span>Back to Projects</span>
-        </Button>
+    <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
+      <Button
+        onClick={() => router.push("/#projects")}
+        className="bg-surface text-primary border border-primary/20 font-medium rounded-none mb-8 hover:bg-primary hover:text-surface transition-all flex items-center gap-2"
+      >
+        <ArrowLeft size={18} />
+        <span>Back to Projects</span>
+      </Button>
 
-        <h1 className="text-4xl md:text-6xl font-display font-bold text-primary mb-6">
-          {project.title}
-        </h1>
+      <h1 className="text-4xl md:text-6xl font-display font-bold text-primary mb-6">
+        {project.title}
+      </h1>
 
-        <div className="flex flex-wrap gap-2 mb-8">
-          {project.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="bg-secondary/10 text-secondary-dark font-medium border border-secondary/30 text-xs px-3 py-1 inline-block"
-            >
-              {tech}
-            </span>
-          ))}
+      <div className="flex flex-wrap gap-2 mb-8">
+        {project.techStack.map((tech) => (
+          <span
+            key={tech}
+            className="bg-secondary/10 text-secondary-dark font-medium border border-secondary/30 text-xs px-3 py-1 inline-block"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      <div className="aspect-video w-full overflow-hidden border border-primary/10 mb-12 relative">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          sizes="(max-width: 1024px) 100vw, 1024px"
+          priority
+          className="object-cover rounded-none"
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div className="md:col-span-2 space-y-8">
+          <section className="bg-surface p-8 border border-primary/10">
+            <h2 className="text-xl font-display font-bold text-primary mb-4 flex items-center gap-2">
+              <Code2 size={22} className="text-accent" />
+              Project Description
+            </h2>
+            <p className="text-mainText leading-relaxed text-lg text-justify">{project.description}</p>
+          </section>
+
+          <section className="bg-surface p-8 border border-primary/10">
+            <h2 className="text-xl font-display font-bold text-primary mb-4 flex items-center gap-2">
+              <AlertTriangle size={22} className="text-accent" />
+              Challenges Faced
+            </h2>
+            <p className="text-mainText leading-relaxed text-lg text-justify">{project.challenges}</p>
+          </section>
+
+          <section className="bg-surface p-8 border border-primary/10">
+            <h2 className="text-xl font-display font-bold text-primary mb-4 flex items-center gap-2">
+              <Lightbulb size={22} className="text-accent" />
+              Future Improvements
+            </h2>
+            <p className="text-mainText leading-relaxed text-lg text-justify">{project.futureImprovements}</p>
+          </section>
         </div>
 
-        <div className="aspect-video w-full overflow-hidden border border-primary/10 mb-12 relative">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            sizes="(max-width: 1024px) 100vw, 1024px"
-            priority
-            className="object-cover rounded-none"
-          />
-        </div>
+        <div className="space-y-6">
+          <div className="bg-surface p-6 border border-primary/10">
+            <h3 className="text-lg font-display font-bold text-primary mb-4">Project Links</h3>
+            <div className="space-y-4">
+              {project.liveLink && (
+                <Link
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full block"
+                >
+                  <Button className="w-full bg-primary text-surface font-bold rounded-none hover:bg-primary-dark transition-all flex items-center justify-center gap-2">
+                    <span>Live Demo</span>
+                    <ExternalLink size={18} />
+                  </Button>
+                </Link>
+              )}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          <div className="md:col-span-2 space-y-8">
-            <section className="bg-surface p-8 border border-primary/10">
-              <h2 className="text-xl font-display font-bold text-primary mb-4 flex items-center gap-2">
-                <Code2 size={22} className="text-accent" />
-                Project Description
-              </h2>
-              <p className="text-mainText leading-relaxed text-lg">{project.description}</p>
-            </section>
-
-            <section className="bg-surface p-8 border border-primary/10">
-              <h2 className="text-xl font-display font-bold text-primary mb-4 flex items-center gap-2">
-                <AlertTriangle size={22} className="text-accent" />
-                Challenges Faced
-              </h2>
-              <p className="text-mainText leading-relaxed text-lg">{project.challenges}</p>
-            </section>
-
-            <section className="bg-surface p-8 border border-primary/10">
-              <h2 className="text-xl font-display font-bold text-primary mb-4 flex items-center gap-2">
-                <Lightbulb size={22} className="text-accent" />
-                Future Improvements
-              </h2>
-              <p className="text-mainText leading-relaxed text-lg">{project.futureImprovements}</p>
-            </section>
-          </div>
-
-          <div className="space-y-6">
-            <div className="bg-surface p-6 border border-primary/10">
-              <h3 className="text-lg font-display font-bold text-primary mb-4">Project Links</h3>
-              <div className="space-y-4">
-                {project.liveLink && (
-                  <Link
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full block"
-                  >
-                    <Button className="w-full bg-primary text-surface font-bold rounded-none hover:bg-primary-dark transition-all flex items-center justify-center gap-2">
-                      <span>Live Demo</span>
-                      <ExternalLink size={18} />
-                    </Button>
-                  </Link>
-                )}
-
-                {project.githubLink && (
-                  <Link
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full block"
-                  >
-                    <Button className="w-full bg-surface text-primary border border-primary font-bold rounded-none hover:bg-primary hover:text-surface transition-all flex items-center justify-center gap-2">
-                      <span>GitHub Repository</span>
-                      <GithubIcon />
-                    </Button>
-                  </Link>
-                )}
-              </div>
+              {project.githubLink && (
+                <Link
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full block"
+                >
+                  <Button className="w-full bg-surface text-primary border border-primary font-bold rounded-none hover:bg-primary hover:text-surface transition-all flex items-center justify-center gap-2">
+                    <span>GitHub Repository</span>
+                    <GithubIcon />
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
       </div>
-      <Footer />
-    </main>
+    </div>
   );
 };
 
-export default ProjectDetailsPage;
+export default function ProjectDetailsPage() {
+  return (
+    <main className="min-h-screen bg-background">
+      <Navbar />
+      <Suspense
+        fallback={
+          <div className="min-h-[70vh] flex items-center justify-center">
+            <Spinner size="lg" color="current" className="text-primary" />
+          </div>
+        }
+      >
+        <ProjectContent />
+      </Suspense>
+      <Footer />
+    </main>
+  );
+}

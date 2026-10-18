@@ -16,31 +16,26 @@ interface ProjectType {
   techStack: string[];
   liveLink?: string;
   githubLink?: string;
-  challenges?: string;
-  futureImprovements?: string;
 }
 
 const defaultProjects: ProjectType[] = [
   {
     _id: "1",
-    title: "Sun Cycle CSS Animation Engine",
-    description: "Synchronized keyframe-based sky and sun elevation engine with seamless color space transition logic.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-    techStack: ["HTML", "CSS", "JavaScript", "React"],
+    title: "FitLog — Fitness Tracking Platform",
+    description: "Responsive fitness tracking web application that allows users to explore workouts, organize fitness plans, and manage saved activities with secure authentication and database integration.",
+    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&q=80",
+    techStack: ["Next.js", "TypeScript", "MongoDB", "Better Auth", "Hero UI"],
+    liveLink: "https://fitlog-06-ph.vercel.app/",
+    githubLink: "https://github.com/rashed-i-ryne/assignment-06",
   },
   {
     _id: "2",
-    title: "EEE Circuit Analyzer Pro",
-    description: "Web application designed for UIU students to compute transient circuit response and simulate wave nodes.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
-  },
-  {
-    _id: "3",
-    title: "BetterAuth Management Suite",
-    description: "Minimalist administrative dashboard with integrated user session authorization and audit logging.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
-    techStack: ["Next.js", "HeroUI", "BetterAuth", "Mongoose"],
+    title: "BazarDor — Daily Market Price Tracker",
+    description: "Modern market-price tracking platform designed to help users quickly view, compare, and filter prices of everyday grocery and market products with category sorting and secure role-based routes.",
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80",
+    techStack: ["Next.js", "TypeScript", "MongoDB", "Better Auth", "Hero UI"],
+    liveLink: "https://bazardar-assignment-07-ph.vercel.app/",
+    githubLink: "https://github.com/rashed-i-ryne/assignment-07",
   },
 ];
 
@@ -64,10 +59,10 @@ export const Projects = () => {
 
   return (
     <section id="projects" className="py-24 px-6 bg-background">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <SectionHeader title="PROJECTS" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
           {projects.map((project) => (
             <Card
               key={project._id}
@@ -79,7 +74,7 @@ export const Projects = () => {
                     src={project.image}
                     alt={project.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+                    sizes="(max-width: 768px) 100vw, 500px"
                     className="object-cover rounded-none group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -102,14 +97,28 @@ export const Projects = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-6 pt-0">
+              
+              <div className="p-6 pt-0 flex items-center gap-3">
                 <Link
                   href={`/projects/${project._id}`}
-                  className="w-full bg-primary text-surface font-bold rounded-none hover:bg-primary-dark transition-all flex items-center justify-between px-4 py-3"
+                  className="flex-1 bg-primary text-surface font-bold rounded-none hover:bg-primary-dark transition-all flex items-center justify-between px-4 py-3 text-sm"
                 >
                   <span>View Details</span>
-                  <ArrowUpRight size={18} />
+                  <ArrowUpRight size={16} />
                 </Link>
+                {project.githubLink && (
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub Repository"
+                    className="p-3 border border-primary/20 text-primary hover:border-accent hover:text-accent transition-colors flex items-center justify-center"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </Card>
           ))}

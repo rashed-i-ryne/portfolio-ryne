@@ -1,10 +1,13 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Hahmlet } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
+// Configure the Hahmlet font
+const hahmlet = Hahmlet({ 
+  subsets: ["latin"], 
+  variable: "--font-hahmlet" 
+});
 
 export const metadata: Metadata = {
   title: "Rashedul Islam Ryne | Frontend Developer",
@@ -14,7 +17,8 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className="light">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans`}>
+      {/* Apply the Hahmlet variable and set it as the default font */}
+      <body className={`${hahmlet.variable} font-sans`}>
         {children}
       </body>
     </html>

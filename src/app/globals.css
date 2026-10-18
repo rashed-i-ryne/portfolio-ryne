@@ -4,6 +4,11 @@
 
 /* Define our custom theme directly in CSS (Tailwind v4 syntax) */
 @theme {
+  /* Map the Next.js font variable to Tailwind's font utilities - fallback moved inside var() */
+  --font-sans: var(--font-hahmlet, serif);
+  --font-display: var(--font-hahmlet, serif);
+
+  /* Brand Colors */
   --color-background: #F4F8F6;
   --color-surface: #FFFFFF;
   

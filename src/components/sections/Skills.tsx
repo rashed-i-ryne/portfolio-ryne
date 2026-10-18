@@ -5,16 +5,36 @@ import { Card } from "@heroui/react";
 
 const skillCategories = [
   {
+    title: "Foundation",
+    skills: ["HTML5", "CSS3", "JavaScript (Basic)", "ES6 + Problem Solving"],
+  },
+  {
     title: "Frontend",
-    skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Tailwind CSS", "Next.js"],
+    skills: ["React (Basic)", "Tailwind CSS", "TypeScript Basic + OOP", "Next.js"],
   },
   {
-    title: "Backend & DB",
-    skills: ["Node.js", "MongoDB", "Mongoose", "BetterAuth"],
+    title: "Backend",
+    skills: ["Node.js", "Express.js", "Modular Pattern", "API Integration"],
   },
   {
-    title: "Tools & Paradigms",
-    skills: ["Git & GitHub", "AI Mindset & Engineering", "AI-Assisted Coding"],
+    title: "Database",
+    skills: ["MongoDB", "Mongoose / ODM"],
+  },
+  {
+    title: "UI Libraries",
+    skills: ["HeroUI", "ShadCN"],
+  },
+  {
+    title: "Auth & Security",
+    skills: ["BetterAuth", "Role Based Access Control"],
+  },
+  {
+    title: "Advanced Concepts",
+    skills: ["DOM vs BOM", "AI Mindset Development", "AI Integration", "AI Assisted Coding"],
+  },
+  {
+    title: "Payment & Testing",
+    skills: ["Stripe", "SSLCommerz", "Introduction to Testing"],
   },
 ];
 
@@ -24,7 +44,7 @@ export const Skills = () => {
       <div className="max-w-7xl mx-auto">
         <SectionHeader title="SKILLS" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {skillCategories.map((category, index) => (
             <Card key={index} className="bg-surface rounded-none border border-primary/10 shadow-none hover:border-accent transition-colors p-8">
               <h3 className="text-xl font-display font-bold text-primary mb-6 border-b border-secondary/20 pb-4">

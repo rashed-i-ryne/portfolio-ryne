@@ -1,30 +1,57 @@
 // src/components/sections/About.tsx
-import React from "react";
+import Image from "next/image";
+import profileImage from "../../../public/formal.jpeg";
 import { SectionHeader } from "../ui/SectionHeader";
 
 export const About = () => {
   return (
-    <section id="about" className="py-24 px-6 bg-surface">
-      <div className="max-w-5xl mx-auto">
+    <section id="about" className="bg-surface px-6 py-24">
+      <div className="mx-auto max-w-5xl">
         <SectionHeader title="ABOUT ME" />
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 items-center">
-          <div className="aspect-square bg-background border-2 border-primary/10 relative group overflow-hidden">
-            {/* Placeholder for professional photo */}
-            <div className="absolute inset-0 flex items-center justify-center text-secondary-light font-display uppercase tracking-widest group-hover:scale-105 transition-transform duration-500">
-              [ Photo Placeholder ]
-            </div>
+
+        <div className="mt-12 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+          {/* Profile Image */}
+          <div className="relative mx-auto w-full max-w-md overflow-hidden border-2 border-primary/10 bg-background">
+            <Image
+              src={profileImage}
+              alt="Rashedul Islam - Full-Stack Web Developer"
+              width={768}
+              height={1024}
+              priority
+              className="h-auto w-full object-contain"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
-          
-          <div className="space-y-6 text-mainText text-lg leading-relaxed">
+
+          {/* About Content */}
+          <div className="max-w-2xl text-mainText text-lg leading-relaxed text-justify">
             <p>
-              My journey into programming began from a desire to blend logic with visual creativity. As an Electrical and Electronic Engineering (EEE) student at United International University (UIU), I bring a strong analytical mindset to the web development space. 
+              I’m a Full-Stack Web Developer and an Electrical & Electronic
+              Engineering student at United International University. I enjoy
+              building things, solving problems, and turning ideas into
+              practical digital experiences.
             </p>
-            <p>
-              I specialize in crafting meticulous front-end experiences. I love diving deep into CSS—whether it's building clean layouts or programming precise keyframe animations, like calculating the exact color transitions for a pure sky transitioning from dark to light at sunrise, and hitting the perfect light blue when the sun is at its highest point.
+
+            <p className="mt-6">
+              My work covers both frontend and backend development. I enjoy
+              creating clean, responsive interfaces with React and Next.js,
+              while also working with APIs, databases, authentication, and
+              backend architecture using technologies like Node.js, Express, and
+              MongoDB.
             </p>
-            <p>
-              When I'm not writing code or debugging complex circuits, you can find me playing sports or painting, always looking for new ways to channel my creativity.
+
+            <p className="mt-6">
+              What drives me most is curiosity. I like understanding why
+              something works, breaking complicated problems into smaller
+              pieces, and finding better ways to build reliable and maintainable
+              applications.
+            </p>
+
+            <p className="mt-6">
+              I’m continuously learning, experimenting, and working on
+              real-world projects to become a better developer. My goal is to
+              build products that are not only technically solid, but also
+              simple, useful, and enjoyable to use.
             </p>
           </div>
         </div>
