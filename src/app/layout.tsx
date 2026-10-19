@@ -8,7 +8,7 @@ const hahmlet = Hahmlet({
 });
 
 export const metadata: Metadata = {
-  title: "Rashedul Islam Ryne | Frontend Developer",
+  title: "Rashedul Islam Ryne | Full Stack Developer",
   description: "Portfolio of Rashedul Islam Ryne, Frontend Developer and EEE Student at UIU.",
 };
 
