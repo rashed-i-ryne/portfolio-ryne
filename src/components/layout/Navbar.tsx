@@ -1,4 +1,4 @@
-// src/components/layout/Navbar.tsx
+
 "use client";
 
 import React, { useState } from "react";
@@ -34,7 +34,6 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
         <div className="hidden sm:flex items-center gap-6">
           {navItems.map((item) => (
             <Link
@@ -47,7 +46,6 @@ export const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile Navigation Toggle */}
         <div className="sm:hidden flex items-center">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -59,7 +57,6 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
       {isMenuOpen && (
         <div className="sm:hidden bg-surface border-b border-secondary-light/20 px-6 py-6 space-y-4">
           {navItems.map((item) => (

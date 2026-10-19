@@ -51,7 +51,6 @@ const AdminDashboardPage = () => {
 
   useEffect(() => {
     if (isAuthenticated && activeTab === "messages") {
-      // Using setTimeout bypasses the strict synchronous setState linting rule
       const timer = setTimeout(() => {
         fetchMessages();
       }, 0);
@@ -104,7 +103,7 @@ const AdminDashboardPage = () => {
         setStatusMessage("Error creating project.");
       }
     } catch (error) {
-      // Logging the error clears the 'unused variable' warning
+      
       console.error("Project creation error:", error);
       setStatusMessage("Failed to submit project to database.");
     }

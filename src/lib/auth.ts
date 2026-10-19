@@ -1,4 +1,3 @@
-// src/lib/auth.ts
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import clientPromise from "@/lib/db/mongodbClient";

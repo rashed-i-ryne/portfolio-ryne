@@ -1,4 +1,3 @@
-// src/app/api/projects/route.ts
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db/mongodb";
 import Project from "@/models/Project";

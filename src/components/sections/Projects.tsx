@@ -1,4 +1,4 @@
-// src/components/sections/Projects.tsx
+
 "use client";
 
 import React, { useEffect, useState } from "react";

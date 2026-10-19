@@ -1,4 +1,4 @@
-// src/components/layout/Footer.tsx
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -8,12 +8,11 @@ export const Footer = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Making this asynchronous clears the strict ESLint warning
+    
     const timer = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(timer);
   }, []);
 
-  // Uses a static year for the server build, swaps to dynamic year in the browser
   const currentYear = mounted ? new Date().getFullYear() : 2026;
 
   return (

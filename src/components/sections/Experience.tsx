@@ -1,4 +1,4 @@
-// src/components/sections/Experience.tsx
+
 import React from "react";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Card } from "@heroui/react";

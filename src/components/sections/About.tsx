@@ -1,4 +1,4 @@
-// src/components/sections/About.tsx
+
 import Image from "next/image";
 import profileImage from "../../../public/formal.jpeg";
 import { SectionHeader } from "../ui/SectionHeader";
@@ -10,7 +10,7 @@ export const About = () => {
         <SectionHeader title="ABOUT ME" />
 
         <div className="mt-12 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          {/* Profile Image */}
+          
           <div className="relative mx-auto w-full max-w-md overflow-hidden border-2 border-primary/10 bg-background">
             <Image
               src={profileImage}
@@ -23,7 +23,6 @@ export const About = () => {
             />
           </div>
 
-          {/* About Content */}
           <div className="max-w-2xl text-mainText text-lg leading-relaxed text-justify">
             <p>
               I’m a Full-Stack Web Developer and an Electrical & Electronic

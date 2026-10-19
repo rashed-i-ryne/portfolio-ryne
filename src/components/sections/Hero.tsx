@@ -1,4 +1,4 @@
-// src/components/sections/Hero.tsx
+
 "use client";
 
 import React from "react";
@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Download } from "lucide-react";
 import heroBg from "../../../public/hero-bg.jpeg";
 
-// Custom SVG components for brand icons to prevent lucide-react import errors
+
 const GithubIcon = () => (
   <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
@@ -40,8 +40,7 @@ const FacebookIcon = () => (
 export const Hero = () => {
   return (
     <section id="hero" className="min-h-screen pt-32 pb-20 px-6 flex items-center relative overflow-hidden">
-      
-      {/* 1. Background Image - Opacity set to 85% for high visibility */}
+    
       <div className="absolute inset-0 -z-20 w-full h-full">
         <Image
           src={heroBg}
@@ -53,32 +52,26 @@ export const Hero = () => {
         />
       </div>
 
-      {/* 2. Gradient Overlay - Dark/solid on the left for text contrast, fading to transparent on the right */}
       <div className="absolute inset-0 bg-background/50 lg:bg-linear-to-r lg:from-background/95 lg:via-background/40 lg:to-transparent -z-10" />
 
-      {/* Hero Content - Changed to grid-cols-3 for 2/3 ratio */}
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-12 items-center relative z-10">
         
-        {/* Left Column: Content - Spans 2 out of 3 columns on large screens */}
         <div className="space-y-8 animate-fade-in lg:col-span-2">
           <div>
-            {/* 1. Architecture Line (Two Lines) */}
+        
             <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-accent tracking-tighter leading-[0.95] mb-6 uppercase drop-shadow-sm">
               CURIOSITY ARCHITECTS <br /> THE FUTURE.
             </h1>
 
-            {/* 2. Name (Smaller Element) */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-primary tracking-tighter leading-none mb-3">
               RASHEDUL ISLAM RYNE<span className="text-accent">.</span>
             </h2>
 
-            {/* 3. Short Role Line - Justified text applied here */}
             <p className="text-lg sm:text-xl text-mainText/90 max-w-2xl font-medium text-justify">
               Full-Stack Web Developer crafting modern, scalable digital experiences through thoughtful engineering, clean architecture, and continuous learning.
             </p>
           </div>
 
-          {/* Action Buttons & Social Links */}
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <a
               href="/resume.pdf"
@@ -130,7 +123,6 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Right Column: Intentionally left empty to showcase the background portrait (Spans 1 column) */}
         <div className="hidden lg:block lg:col-span-1"></div>
 
       </div>

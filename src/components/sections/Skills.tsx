@@ -1,4 +1,4 @@
-// src/components/sections/Skills.tsx
+
 import React from "react";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Card } from "@heroui/react";

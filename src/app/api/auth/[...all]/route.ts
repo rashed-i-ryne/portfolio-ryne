@@ -1,4 +1,3 @@
-// src/app/api/auth/[...all]/route.ts
 import { NextRequest } from "next/server";
 
 type RouteContext = {
