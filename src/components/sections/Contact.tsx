@@ -50,7 +50,7 @@ export const Contact = () => {
             <div className="space-y-6">
               <div className="flex items-center gap-4 text-secondary-dark hover:text-accent transition-colors">
                 <Mail size={24} />
-                <span className="text-lg font-medium">ryne.dev@example.com</span>
+                <span className="text-lg font-medium">rashedulislamrynee@gmail.com</span>
               </div>
               <div className="flex items-center gap-4 text-secondary-dark hover:text-accent transition-colors">
                 <Phone size={24} />
