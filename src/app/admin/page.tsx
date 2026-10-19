@@ -19,12 +19,12 @@ const AdminDashboardPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeTab, setActiveTab] = useState<"projects" | "messages">("projects");
   
-  // Login State
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
 
-  // Project Form State
+  
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -34,7 +34,7 @@ const AdminDashboardPage = () => {
   const [challenges, setChallenges] = useState("");
   const [futureImprovements, setFutureImprovements] = useState("");
 
-  // Messages State
+  
   const [messages, setMessages] = useState<IMessageData[]>([]);
 
   const fetchMessages = async () => {

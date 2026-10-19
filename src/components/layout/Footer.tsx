@@ -60,8 +60,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-6 mt-12 text-center text-sm text-surface/50">
-        &copy; {currentYear} Rashedul Islam Ryne. Built with Next.js, HeroUI &
-        Tailwind CSS.
+        &copy; {currentYear} Rashedul Islam Ryne.
       </div>
     </footer>
   );
