@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -8,6 +7,7 @@ import { SectionHeader } from "../ui/SectionHeader";
 import { Card } from "@heroui/react";
 import { ArrowUpRight } from "lucide-react";
 
+// 1. Updated interface to hold the data required for the detailed page
 interface ProjectType {
   _id: string;
   title: string;
@@ -16,8 +16,11 @@ interface ProjectType {
   techStack: string[];
   liveLink?: string;
   githubLink?: string;
+  challengesFaced?: string;
+  futurePlans?: string;
 }
 
+// 2. Added a 3rd project and populated the new detailed fields
 const defaultProjects: ProjectType[] = [
   {
     _id: "1",
@@ -27,6 +30,8 @@ const defaultProjects: ProjectType[] = [
     techStack: ["Next.js", "TypeScript", "MongoDB", "Better Auth", "Hero UI"],
     liveLink: "https://fitlog-06-ph.vercel.app/",
     githubLink: "https://github.com/rashed-i-ryne/assignment-06",
+    challengesFaced: "Structuring complex relational data between users, custom workout routines, and daily progress logs while maintaining fast database query performance and persistence.",
+    futurePlans: "Integrating social sharing features and AI-based personalized workout recommendations based on user logging history.",
   },
   {
     _id: "2",
@@ -36,7 +41,20 @@ const defaultProjects: ProjectType[] = [
     techStack: ["Next.js", "TypeScript", "MongoDB", "Better Auth", "Hero UI"],
     liveLink: "https://bazardar-assignment-07-ph.vercel.app/",
     githubLink: "https://github.com/rashed-i-ryne/assignment-07",
+    challengesFaced: "Handling complex state management for dynamic multi-category filtering and ensuring secure role-based access control (RBAC) so only admins can update market prices.",
+    futurePlans: "Integrating automated receipt scanning via OCR and expanding market coverage through community crowdsourcing.",
   },
+  {
+    _id: "3",
+    title: "Omnigrid Dhaka — EV Fleet Management",
+    description: "City-wide electric bus fleet management system featuring real-time GPS telemetry, battery state-of-charge tracking, dynamic seat locking, and integrated payment gateways.",
+    image: "https://images.unsplash.com/photo-1549315488-7243c2c1c73a?w=800&q=80",
+    techStack: ["React", "Node.js", "Socket.io", "MongoDB", "SSLCommerz"],
+    liveLink: "#", 
+    githubLink: "https://github.com/rashed-i-ryne",
+    challengesFaced: "Managing high-frequency real-time GPS telemetry updates from 400 buses without overwhelming the database required optimizing Socket.io event emissions and caching strategies.",
+    futurePlans: "Implementing machine learning algorithms for predictive battery maintenance and dynamic route optimization based on real-time traffic data.",
+  }
 ];
 
 export const Projects = () => {
@@ -59,10 +77,11 @@ export const Projects = () => {
 
   return (
     <section id="projects" className="py-24 px-6 bg-background">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <SectionHeader title="PROJECTS" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+        {/* 3. Updated to lg:grid-cols-3 so three cards fit perfectly on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {projects.map((project) => (
             <Card
               key={project._id}
@@ -74,7 +93,7 @@ export const Projects = () => {
                     src={project.image}
                     alt={project.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 500px"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover rounded-none group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -86,7 +105,7 @@ export const Projects = () => {
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-2">
-                    {project.techStack.map((tech) => (
+                    {project.techStack.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
                         className="text-xs px-2 py-1 bg-background text-secondary-dark font-medium border border-secondary/20"
@@ -94,6 +113,11 @@ export const Projects = () => {
                         {tech}
                       </span>
                     ))}
+                    {project.techStack.length > 4 && (
+                      <span className="text-xs px-2 py-1 bg-background text-secondary-dark font-medium border border-secondary/20">
+                        +{project.techStack.length - 4}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

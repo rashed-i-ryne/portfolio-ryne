@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -48,14 +47,24 @@ export const Contact = () => {
             </p>
             
             <div className="space-y-6">
-              <div className="flex items-center gap-4 text-secondary-dark hover:text-accent transition-colors">
+              {/* Wrapped in an anchor tag with mailto: */}
+              <a 
+                href="mailto:rashedulislamrynee@gmail.com"
+                className="flex items-center gap-4 text-secondary-dark hover:text-accent transition-colors cursor-pointer"
+              >
                 <Mail size={24} />
                 <span className="text-lg font-medium">rashedulislamrynee@gmail.com</span>
-              </div>
-              <div className="flex items-center gap-4 text-secondary-dark hover:text-accent transition-colors">
+              </a>
+              
+              {/* Wrapped in an anchor tag with tel: for tap-to-call on mobile */}
+              <a 
+                href="tel:+8801637022108"
+                className="flex items-center gap-4 text-secondary-dark hover:text-accent transition-colors cursor-pointer"
+              >
                 <Phone size={24} />
                 <span className="text-lg font-medium">+880 1637022108</span>
-              </div>
+              </a>
+
               <div className="flex items-center gap-4 text-secondary-dark">
                 <MapPin size={24} />
                 <span className="text-lg font-medium">Dhaka, Bangladesh</span>

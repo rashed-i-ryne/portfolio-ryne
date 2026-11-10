@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -34,18 +33,21 @@ export const Navbar = () => {
           </Link>
         </div>
 
+        {/* Desktop Navigation */}
         <div className="hidden sm:flex items-center gap-6">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-mainText hover:text-primary transition-colors text-sm font-medium tracking-wide uppercase"
+              // Replaced hover:text-primary with hover:text-[#CD9444] and after:bg-primary with after:bg-[#CD9444]
+              className="relative pb-1 text-mainText hover:text-[#CD9444] transition-colors text-sm font-medium tracking-wide uppercase after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#CD9444] after:transition-all after:duration-300 hover:after:w-full"
             >
               {item.name}
             </Link>
           ))}
         </div>
 
+        {/* Mobile Menu Toggle */}
         <div className="sm:hidden flex items-center">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -57,6 +59,7 @@ export const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Navigation Menu */}
       {isMenuOpen && (
         <div className="sm:hidden bg-surface border-b border-secondary-light/20 px-6 py-6 space-y-4">
           {navItems.map((item) => (
@@ -64,7 +67,8 @@ export const Navbar = () => {
               key={item.name}
               href={item.href}
               onClick={() => setIsMenuOpen(false)}
-              className="block text-mainText hover:text-primary text-xl font-display uppercase font-bold py-2"
+              // Replaced hover:text-primary with hover:text-[#CD9444]
+              className="block text-mainText hover:text-[#CD9444] text-xl font-display uppercase font-bold py-2 transition-colors"
             >
               {item.name}
             </Link>
